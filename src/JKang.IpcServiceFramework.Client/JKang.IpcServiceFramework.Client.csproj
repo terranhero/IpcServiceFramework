@@ -1,17 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="..\IpcServiceFramework.targets" />
 
-  <PropertyGroup>
-	  <!--<TargetFramework>netstandard2.0</TargetFramework>-->
-	  <TargetFrameworks>net8.0;netstandard2.0</TargetFrameworks>
-    <PackageTags>ipc,interprocess,communication,wcf,client</PackageTags>
-  </PropertyGroup>
+	<PropertyGroup>
+		<!--<TargetFramework>netstandard2.0</TargetFramework>-->
+		<TargetFrameworks>net8.0;netstandard2.0</TargetFrameworks>
+		<PackageTags>ipc,interprocess,communication,wcf,client</PackageTags>
+		<AssemblyName>IpcServiceFramework.Client</AssemblyName>
+	</PropertyGroup>
 
-  <ItemGroup Condition="'$(DisableDynamicCodeGeneration)' != 'true'">
-    <PackageReference Include="System.Reflection.DispatchProxy" Version="4.7.1" />
-  </ItemGroup>
+	<ItemGroup Condition="'$(DisableDynamicCodeGeneration)' != 'true'">
+		<PackageReference Include="System.Reflection.DispatchProxy" Version="4.7.1" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\JKang.IpcServiceFramework.Core\JKang.IpcServiceFramework.Core.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\JKang.IpcServiceFramework.Core\JKang.IpcServiceFramework.Core.csproj" />
+	</ItemGroup>
 
 </Project>

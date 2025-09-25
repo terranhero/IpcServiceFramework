@@ -6,6 +6,7 @@
 		<TargetFrameworks>net8.0;netstandard2.0</TargetFrameworks>
 		<RootNamespace>JKang.IpcServiceFramework</RootNamespace>
 		<PackageTags>ipc,interprocess,communication,wcf</PackageTags>
+		<AssemblyName>IpcServiceFramework.Core</AssemblyName>
 	</PropertyGroup>
 
 	<ItemGroup>
