@@ -1,6 +1,7 @@
 <Project>
 
 	<PropertyGroup>
+		<TargetFrameworks>net8.0;netstandard2.0</TargetFrameworks>
 		<Authors>Jacques Kang and other GitHub contributors</Authors>
 		<Company />
 		<PackageLicenseUrl>https://github.com/jacqueskang/IpcServiceFramework/blob/develop/LICENSE</PackageLicenseUrl>
@@ -11,8 +12,8 @@
 		<AssemblyOriginatorKeyFile>..\IpcServiceFramework.snk</AssemblyOriginatorKeyFile>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(DisableDynamicCodeGeneration)' == 'true'">
+	<!--<PropertyGroup Condition="'$(DisableDynamicCodeGeneration)' == 'true'">
 		<DefineConstants>DISABLE_DYNAMIC_CODE_GENERATION</DefineConstants>
-	</PropertyGroup>
+	</PropertyGroup>-->
 
 </Project>

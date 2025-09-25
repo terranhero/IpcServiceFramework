@@ -1,15 +1,29 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Text;
+#if NET8_0_OR_GREATER
+using System.Text.Json;
+using System.Text.Json.Serialization;
+#else
+using Newtonsoft.Json;
+#endif
 
 namespace JKang.IpcServiceFramework.Services
 {
     public class DefaultIpcMessageSerializer : IIpcMessageSerializer
     {
+#if NET8_0_OR_GREATER
+        private static readonly JsonSerializerOptions _settings = new JsonSerializerOptions
+        {
+
+        };
+#else
         private static readonly JsonSerializerSettings _settings = new JsonSerializerSettings
         {
             TypeNameHandling = TypeNameHandling.Objects
         };
+#endif
+
+
 
         public IpcRequest DeserializeRequest(byte[] binary)
         {
@@ -35,13 +49,20 @@ namespace JKang.IpcServiceFramework.Services
         {
             try
             {
+#if NET8_0_OR_GREATER
+                return JsonSerializer.Deserialize<T>(binary, _settings);
+#else                
                 string json = Encoding.UTF8.GetString(binary);
                 return JsonConvert.DeserializeObject<T>(json, _settings);
+#endif
             }
             catch (Exception ex) when (
-                ex is JsonSerializationException ||
-                ex is ArgumentException ||
-                ex is EncoderFallbackException)
+#if NET8_0_OR_GREATER
+#else
+    ex is JsonSerializationException ||
+#endif
+            ex is ArgumentException ||
+            ex is EncoderFallbackException)
             {
                 throw new IpcSerializationException("Failed to deserialize IPC message", ex);
             }
@@ -51,11 +72,22 @@ namespace JKang.IpcServiceFramework.Services
         {
             try
             {
+#if NET8_0_OR_GREATER
+                using (System.IO.MemoryStream stream = new System.IO.MemoryStream())
+                {
+                    JsonSerializer.Serialize(stream, _settings);
+                    return stream.ToArray();
+                }
+#else
                 string json = JsonConvert.SerializeObject(obj, _settings);
-                return Encoding.UTF8.GetBytes(json);
+                  return Encoding.UTF8.GetBytes(json);
+#endif
             }
             catch (Exception ex) when (
-                ex is JsonSerializationException ||
+#if NET8_0_OR_GREATER
+#else
+    ex is JsonSerializationException ||
+#endif
                 ex is EncoderFallbackException)
             {
                 throw new IpcSerializationException("Failed to serialize IPC message", ex);

@@ -1,7 +1,12 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Globalization;
+#if NET8_0_OR_GREATER
+using System.Text.Json;
+using System.Text.Json.Serialization;
+#else
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+#endif
 
 namespace JKang.IpcServiceFramework.Services
 {
@@ -98,6 +103,21 @@ namespace JKang.IpcServiceFramework.Services
                 return true;
             }
 
+#if NET8_0_OR_GREATER
+            if (origValue is System.Text.Json.Nodes.JsonObject jObj)
+            {
+                // rely on JSON.Net to convert complexe type
+                destValue = jObj.Deserialize(destType);
+                // TODO: handle error
+                return true;
+            }
+
+            if (origValue is System.Text.Json.Nodes.JsonArray jArray)
+            {
+                destValue = jArray.Deserialize(destType);
+                return true;
+            }
+#else
             if (origValue is JObject jObj)
             {
                 // rely on JSON.Net to convert complexe type
@@ -111,6 +131,8 @@ namespace JKang.IpcServiceFramework.Services
                 destValue = jArray.ToObject(destType);
                 return true;
             }
+#endif
+
 
             try
             {
@@ -126,7 +148,12 @@ namespace JKang.IpcServiceFramework.Services
 
             try
             {
-                destValue = JsonConvert.DeserializeObject(JsonConvert.SerializeObject(origValue), destType);
+#if NET8_0_OR_GREATER
+                destValue = JsonSerializer.Deserialize(JsonSerializer.Serialize(origValue), destType);
+#else
+           destValue = JsonConvert.DeserializeObject(JsonConvert.SerializeObject(origValue), destType);
+#endif
+
                 return true;
             }
             catch (JsonException)
