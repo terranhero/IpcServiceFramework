@@ -1,19 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="..\IpcServiceFramework.targets" />
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <PackageTags>ipc,interprocess,communication,wcf,hosting,tcp</PackageTags>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net8.0;netstandard2.0</TargetFrameworks>
+		<PackageTags>ipc,interprocess,communication,wcf,hosting,tcp</PackageTags>
+		<AssemblyName>IpcServiceFramework.Hosting.Tcp</AssemblyName>
+	</PropertyGroup>
 
-  <ItemGroup>
-	  <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0">
-		  <PrivateAssets>all</PrivateAssets>
-		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-	  </PackageReference>
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\JKang.IpcServiceFramework.Hosting\JKang.IpcServiceFramework.Hosting.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\JKang.IpcServiceFramework.Hosting\JKang.IpcServiceFramework.Hosting.csproj" />
+	</ItemGroup>
 
 </Project>

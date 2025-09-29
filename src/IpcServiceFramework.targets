@@ -4,7 +4,8 @@
 		<TargetFrameworks>net8.0;netstandard2.0</TargetFrameworks>
 		<Authors>Jacques Kang and other GitHub contributors</Authors>
 		<Company />
-		<PackageLicenseUrl>https://github.com/jacqueskang/IpcServiceFramework/blob/develop/LICENSE</PackageLicenseUrl>
+		<PackageLicense>https://github.com/jacqueskang/IpcServiceFramework/blob/develop/LICENSE</PackageLicense>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/jacqueskang/IpcServiceFramework</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/jacqueskang/IpcServiceFramework</PackageProjectUrl>
 		<SignAssembly>true</SignAssembly>
@@ -13,7 +14,26 @@
 		<Title>$(AssemblyName)</Title>
 		<Version>3.2.0</Version>
 	</PropertyGroup>
-
+	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+		<OutputPath>..\bin\</OutputPath>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+		<DefineConstants>Release</DefineConstants>
+		<UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+		<OutputPath>..\bin\</OutputPath>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<DefineConstants>Debug</DefineConstants>
+		<UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Include="..\..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 	<!--<PropertyGroup Condition="'$(DisableDynamicCodeGeneration)' == 'true'">
 		<DefineConstants>DISABLE_DYNAMIC_CODE_GENERATION</DefineConstants>
 	</PropertyGroup>-->

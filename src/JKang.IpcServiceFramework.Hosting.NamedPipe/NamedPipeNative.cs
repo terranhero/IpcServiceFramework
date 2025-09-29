@@ -11,6 +11,9 @@ namespace JKang.IpcServiceFramework.Hosting.NamedPipe
     /// Native API for Named Pipes
     /// https://github.com/PowerShell/PowerShell/blob/master/src/System.Management.Automation/engine/remoting/common/RemoteSessionNamedPipe.cs#L124-L256
     /// </summary>
+#if NET8_0_OR_GREATER
+    [System.Runtime.Versioning.SupportedOSPlatform("windows")]
+#endif
     internal static class NamedPipeNative
     {
         #region Pipe constants

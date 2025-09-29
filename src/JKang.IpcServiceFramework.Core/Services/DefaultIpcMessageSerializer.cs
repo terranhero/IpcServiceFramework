@@ -23,8 +23,6 @@ namespace JKang.IpcServiceFramework.Services
         };
 #endif
 
-
-
         public IpcRequest DeserializeRequest(byte[] binary)
         {
             return Deserialize<IpcRequest>(binary);

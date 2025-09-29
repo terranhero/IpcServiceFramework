@@ -7,8 +7,8 @@
 		<RootNamespace>JKang.IpcServiceFramework</RootNamespace>
 		<PackageTags>ipc,interprocess,communication,wcf</PackageTags>
 		<AssemblyName>IpcServiceFramework.Core</AssemblyName>
-	</PropertyGroup>
 
+	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0">
 			<PrivateAssets>all</PrivateAssets>

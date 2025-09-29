@@ -1,6 +1,6 @@
 <Project>
 
-	<PropertyGroup>
+	<!--<PropertyGroup>
 		<Authors>Jacques Kang and other GitHub contributors</Authors>
 		<Company />
 		<PackageLicenseUrl>https://github.com/jacqueskang/IpcServiceFramework/blob/develop/LICENSE</PackageLicenseUrl>
@@ -9,7 +9,7 @@
 		<Version>3.0.0</Version>
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>..\IpcServiceFramework.snk</AssemblyOriginatorKeyFile>
-	</PropertyGroup>
+	</PropertyGroup>-->
 
 	<PropertyGroup Condition="'$(DisableDynamicCodeGeneration)' == 'true'">
 		<DefineConstants>DISABLE_DYNAMIC_CODE_GENERATION</DefineConstants>
